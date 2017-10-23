@@ -1,0 +1,219 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Inicio']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h1>Lista de usuarios</h1>
+
+        <div class="row">
+          <a class="btn btn-primary" data-toggle="modal" data-target="#modal">Nuevo</a>
+        </div>
+
+
+        <table fbg-datatable [options]="{ order: [[ 1, 'desc' ]]}" paginationLength="15" class="table table-stripped">
+          <thead>
+            <tr>
+              <th class="acciones">Acciones</th>
+              <th>pais</th>
+              <th>provincia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pais of paises;">
+              <td class="acciones">
+                <a class="fa fa-eye btn btn-default btn-sm fa-lg" (click)="setPais(pais)" placement="top" tooltip="Add Rol" data-target="#modalRol"
+                  data-toggle="modal"></a>
+              </td>
+              <td>{{pais.nombre}}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let provincia of pais.provincias">
+                    <a (click)="setProvincia(provincia)" placement="top" tooltip="Add Rol" data-target="#modalCanton" data-toggle="modal">{{provincia.nombre}}</a>
+                    <ul>
+                      <li *ngFor="let canton of provincia.cantons">
+                        <a (click)="setCanton(canton)" placement="top" tooltip="Add Rol" data-target="#modalNumhabitan" data-toggle="modal"> {{canton.nombre}}</a>
+                        <ul>
+                          <li *ngFor="let numhabitans of canton.numhabitans">
+                            
+                            {{numhabitans}}
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--_______________________________MODALES______________________________________________________-->
+  <div class="modal" bsModal id="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nuevo</h4>
+        </div>
+        <div class="modal-body">
+          <form (submitEvent)="createPais()" class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Ingreso Pais</label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" [(ngModel)]="pais.nombre" name="nombre">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" (click)="createPais()">
+                               Guardar
+                           </button>
+                    <button class="btn btn-danger" type="button">
+                               Cancelar
+                           </button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- _____________________________________________________________________-->
+
+
+  <div class="modal" bsModal id="modalRol">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nuevo</h4>
+        </div>
+        <div class="modal-body">
+          <form (submitEvent)="addProvinicia()" class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Nombre provincia</label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" [(ngModel)]="provincia.nombre" name="nombre">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" (click)="createProvincia()">
+                               Guardar
+                           </button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">
+                               Cancelar
+                           </button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--_______________________________MODALES______________________________________________________-->
+
+
+  <div class="modal" bsModal id="modalCanton">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nuevo</h4>
+        </div>
+        <div class="modal-body">
+          <form (submitEvent)="addProvinicia()" class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Nombre provincia</label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" [(ngModel)]="canton.nombre" name="nombre">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" (click)="createCanton()">
+                               Guardar
+                           </button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">
+                               Cancelar
+                           </button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--_______________________________MODALES______________________________________________________-->
+
+
+  <div class="modal" bsModal id="modalNumhabitan">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nuevo</h4>
+        </div>
+        <div class="modal-body">
+          <form (submitEvent)="addProvinicia()" class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Nombre provincia</label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" [(ngModel)]="numhabitan" name="nombare">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" (click)="createNumhabitan()">
+                               Guardar
+                           </button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">
+                               Cancelar
+                           </button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

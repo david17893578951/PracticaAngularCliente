@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+.pointer
+{
+    cursor: pointer;
+}
+
+.bg-transparent
+{
+    background: transparent;
+}
+.ui-datepicker.ui-widget
+{
+    z-index: 99999 !important;
+}
+.popover.clockpicker-popover
+{
+    z-index: 99999 !important;
+}
+.header-button
+{
+    position: relative;
+    z-index: 99;
+}
+.padding-form
+{
+    padding-left: 13px;
+    padding-right: 13px;
+}
+.dataTables_paginate
+{
+    float: left !important;
+}
+.dataTables_info
+{
+    text-align: right;
+}
+
+.logo{
+    margin-top: 2px;
+}
+
+.logo > img{
+    height: 45px;
+    width: auto;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.disabled{
+    color: #555 !important;
+}
+
+body:not(.menu-on-top).desktop-detected {
+    min-height: auto !important;
+}
+
+@media (min-width: 580px) {
+  .minus-left
+    {
+        position: relative;
+        left: -50px;
+    }
+}

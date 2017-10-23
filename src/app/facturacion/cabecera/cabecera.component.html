@@ -1,0 +1,31 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Inicio']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+  </div>
+  <div class="row" *ngIf="!cargar">
+    <div class="col-sm-12">
+      <div class="well">
+        <h1>Facturas</h1>
+        <div class="row">
+          <a class="btn btn-primary" data-toggle="modal" data-target="#modalcrud">Nuevo</a>
+        </div>
+        <div>
+          <h2>Factura Numero= {{cabecera.pruFacCodigo}} </h2>
+        </div>
+        <div>
+          <h2>Cliente= {{cabecera.pruFacCliente}} </h2>
+        </div>
+        <div>
+          <h2>Fecha de Emicion= {{cabecera.pruFacFecha}} </h2>
+        </div>
+        <div>
+          <h2>Total= {{cabecera.pruFacTota}} </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--__________________________________________________________-->
+<div>
+  <app-detallememoria [id]='id'></app-detallememoria>
+</div>

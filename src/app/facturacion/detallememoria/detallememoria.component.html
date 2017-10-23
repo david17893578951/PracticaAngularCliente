@@ -1,0 +1,100 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Inicio']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h1>Lista de Detalle</h1>
+        <div class="row">
+          <a class="btn btn-primary" data-toggle="modal" (click)="id" data-target="#modalcrud">Nuevo</a>
+        </div>
+
+        <table fbg-datatable [options]="{ order: [[ 1, 'asc' ]]}" paginationLength="15" class="table table-stripped">
+          <thead>
+            <tr>
+              <th>CODIGO</th>
+              <th>FACTURA</th>
+              <th>PRODUCTO</th>
+              <th>TOTAL x PRODUCTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detalle of detallesmemori;">
+              <td>{{detalle.pruDetaCodigo}}</td>
+              <td>{{detalle.pruFactura.pruFacCodigo}}</td>
+              <td>{{detalle.pruProducto.pruProCodigo}}</td>
+              <td>{{detalle.pruDetaTota}}</td>
+            </tr>
+           
+
+          </tbody>
+        </table>
+         
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                     <h2>{{totalpag}}</h2>
+                    <button class="btn btn-primary" type="submit" (click)="creatememoriDetalle()">Guardar</button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+           
+      </div>
+    </div>
+  </div>
+
+  <!-- _____________________________________________________________________-->
+  <div class="modal" bsModal id="modalcrud">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nuevo</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Ingreso producto</label>
+                <div class="col-lg-8" *ngIf="!cargarPro">
+                  <select class="form-control" [(ngModel)]="produ.pruProCodigo" name="producto" >
+                    <option *ngFor="let producto of productos" [value]="producto.pruProCodigo">{{producto.pruProNombre}}</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-lg-4 control-label text-left">Cantidad</label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" [(ngModel)]="cantidad" name="cantidad">
+                </div>
+              </div>
+            </fieldset>
+            
+
+            <fieldset>
+              <div class="form-actions">
+                <div class="pull-left">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" (click)="listamemoriDetalle()">
+                               Guardar
+                           </button>
+                    <button class="btn btn-danger" type="button">
+                               Cancelar
+                           </button>
+                  </div>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

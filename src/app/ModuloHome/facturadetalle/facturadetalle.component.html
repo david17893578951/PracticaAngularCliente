@@ -1,0 +1,37 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Inicio']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h1>Lista de Detalle</h1>
+
+   
+        <div class="row">
+          <a class="btn btn-primary" data-toggle="modal" data-target="#modalcrud">Nuevo</a>
+        </div>
+         
+        <table fbg-datatable [options]="{ order: [[ 1, 'asc' ]]}" paginationLength="15" class="table table-stripped">
+          <thead>
+            <tr>              
+              <th>Codigo</th>
+              
+              <th>num total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detalle of detalles;" >
+              
+              <td>{{detalle.pruDetaCodigo}}</td>
+              
+             
+              
+              <td>{{detalle.pruDetaTota}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
